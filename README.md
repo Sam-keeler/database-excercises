@@ -1,0 +1,1 @@
+This is practice working with databases using SQL
