@@ -57,9 +57,7 @@ SUBSTR(last_name, 1, 4),
 '_', 
 SUBSTR(birth_date, 6, 2), 
 SUBSTR(birth_date, 3, 2)))
-AS 'Username', 
-first_name, 
-last_name, 
-birth_date
+AS 'Username', COUNT(*)
 FROM employees
-
+GROUP BY Username
+ORDER BY COUNT(*) DESC;
