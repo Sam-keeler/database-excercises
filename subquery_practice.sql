@@ -3,9 +3,11 @@ USE employees;
 # Find all the current employees with the same hire date as employee 101010 using a sub-query.
 SELECT *
 FROM employees
+JOIN salaries USING(emp_no)
 WHERE hire_date like (SELECT hire_date
                       FROM employees
-                      WHERE emp_no = 101010);
+                      WHERE emp_no = 101010)
+AND to_date >CURDATE();
                       
 # Find all the titles ever held by all current employees with the first name Aamod.
 SELECT title
@@ -71,7 +73,7 @@ WHERE employees.emp_no IN (SELECT emp_no
                            AND to_date > CURDATE());
                            
 # Find the first and last name of the employee with the highest salary.
-SELECT CONCAT(first_name, ' ', last_name)
+SELECT CONCAT(first_name, ' ', last_name) AS 'Top Dawg'
 FROM employees
 JOIN salaries USING (emp_no)
 WHERE salary = (SELECT MAX(salary)
