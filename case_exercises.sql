@@ -12,7 +12,6 @@ FROM workers;
 # Write a query that returns all employee names (previous and current),
 # and a new column 'alpha_group' that returns 'A-H', 'I-Q', or 'R-Z'
 # depending on the first letter of their last name.
-CREATE TEMPORARY TABLE Alpha AS
 SELECT first_name, last_name,
    CASE
       WHEN SUBSTRING(last_name, 1, 1) IN ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H')
@@ -23,9 +22,6 @@ SELECT first_name, last_name,
       THEN 'R-Z'
       END AS 'alpha-group'
 FROM employees.employees;
-
-SELECT *
-FROM Alpha;
 
 # How many employees (current or previous) were born in each decade?
 CREATE TEMPORARY TABLE Decades AS
